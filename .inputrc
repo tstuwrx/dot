@@ -1,0 +1,6 @@
+# config file for GNU readline library
+
+set editing-mode vi
+set keymap vi
+set enable-bracketed-paste on
+set bell-style none

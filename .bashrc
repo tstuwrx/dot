@@ -12,23 +12,16 @@ _have() { type "$1" &>/dev/null; }
 
 # environment variables
 
-export LANG=en_US.UTF-8 # assuming apt install language-pack-en done
+export LANG=en_US.UTF-8
 export USER="${USER:-$(whoami)}"
 export GITUSER="$USER"
 export TZ=America/Chicago
 export HELP_BROWSER=lynx
-export DESKTOP="$HOME/Desktop"
-export DOCUMENTS="$HOME/Documents"
-export DOWNLOADS="$HOME/Downloads"
-export TEMPLATES="$HOME/Templates"
-export PUBLIC="$HOME/Public"
-export PRIVATE="$HOME/Private"
-export PICTURES="$HOME/Pictures"
-export MUSIC="$HOME/Music"
-export VIDEOS="$HOME/Videos"
-export PDFS="$HOME/usb/pdfs"
-export VIRTUALMACHINES="$HOME/VirtualMachines"
-export WORKSPACES="$HOME/Workspaces" # container home dirs for mounting
+export REPOS="$HOME/Repos"
+export GHREPOS="$REPOS/github.com/$GITUSER"
+export DOTFILES="$GHREPOS/dot"
+export SCRIPTS="$DOTFILES/scripts"
+export ZETDIR="$GHREPOS/zet"
 export TERM=xterm-256color
 export HRULEWIDTH=73
 export EDITOR=vi
@@ -37,13 +30,15 @@ export EDITOR_PREFIX=vi
 export PYTHONDONTWRITEBYTECODE=2
 export LC_COLLATE=C
 
+export CDPATH=".:$GHREPOS:$DOTFILES:$REPOS:$HOME"
+
 export LESS="-FXR"
 export LESS_TERMCAP_mb="[35m" # magenta
 export LESS_TERMCAP_md="[33m" # yellow
-export LESS_TERMCAP_me=""      # "0m"
-export LESS_TERMCAP_se=""      # "0m"
+export LESS_TERMCAP_me=""
+export LESS_TERMCAP_se=""
 export LESS_TERMCAP_so="[34m" # blue
-export LESS_TERMCAP_ue=""      # "0m"
+export LESS_TERMCAP_ue=""
 export LESS_TERMCAP_us="[4m"  # underline
 
 # dictionary

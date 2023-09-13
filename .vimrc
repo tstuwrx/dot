@@ -1,8 +1,4 @@
-"vimrc (vim 8+)
-
-"TODO add plugins and
-" place everything in .vim
-" add colorcolumn option at hlinewidth
+" vimrc (vim 8+)
 
 if has("eval")                               " vim-tiny lacks 'eval'
   let skip_defaults_vim = 1
@@ -213,15 +209,20 @@ au FileType markdown,pandoc noremap k gk
 
 set cinoptions+=:0
 
-" Edit/Reload vimrc configuration file
-nnoremap confe :e $HOME/.vimrc<CR>
-nnoremap confr :source $HOME/.vimrc<CR>
-
 " ruler format
 set ruf=%30(%=%#LineNr#%.50F\ [%{strlen(&ft)?&ft:'none'}]\ %l:%c\ %p%%%)
 
 " make Y consistent with D and C (yank til end)
 map Y y$
+
+" load plugins if Plug detected
+if filereadable(expand("~/.vim/autoload/plug.vim"))
+
+  call plug#begin('~/.local/share/vim/plugins')
+  call plug#end()
+
+endif
+
 
 " better command-line completion
 set wildmenu
@@ -233,31 +234,10 @@ nnoremap <C-L> :nohl<CR><C-L>
 set omnifunc=syntaxcomplete#Complete
 
 " force some files to be specific file type
-au bufnewfile,bufRead $SNIPPETS/md/* set ft=pandoc
-au bufnewfile,bufRead $SNIPPETS/sh/* set ft=sh
-au bufnewfile,bufRead $SNIPPETS/bash/* set ft=bash
-au bufnewfile,bufRead $SNIPPETS/go/* set ft=go
-au bufnewfile,bufRead $SNIPPETS/c/* set ft=c
-au bufnewfile,bufRead $SNIPPETS/html/* set ft=html
-au bufnewfile,bufRead $SNIPPETS/css/* set ft=css
-au bufnewfile,bufRead $SNIPPETS/js/* set ft=javascript
-au bufnewfile,bufRead $SNIPPETS/python/* set ft=python
-au bufnewfile,bufRead $SNIPPETS/perl/* set ft=perl
-au bufnewfile,bufRead user-data set ft=yaml
-au bufnewfile,bufRead meta-data set ft=yaml
-au bufnewfile,bufRead *.ddl set ft=sql
-au bufnewfile,bufRead keg set ft=yaml
+au bufnewfile,bufRead *.md set ft=markdown
 au bufnewfile,bufRead *.bash* set ft=bash
-au bufnewfile,bufRead *.{peg,pegn} set ft=config
-au bufnewfile,bufRead *.gotmpl set ft=go
 au bufnewfile,bufRead *.profile set filetype=sh
-au bufnewfile,bufRead *.crontab set filetype=crontab
 au bufnewfile,bufRead *ssh/config set filetype=sshconfig
-au bufnewfile,bufRead .dockerignore set filetype=gitignore
-au bufnewfile,bufRead *gitconfig set filetype=gitconfig
-au bufnewfile,bufRead /tmp/psql.edit.* set syntax=sql
-au bufnewfile,bufRead *.go set spell spellcapcheck=0
-au bufnewfile,bufRead commands.yaml set spell
 au bufnewfile,bufRead *.txt set spell
 
 "fix bork bash detection
@@ -292,12 +272,6 @@ map <F4> :set list!<CR>
 map <F5> :set cursorline!<CR>
 map <F7> :set spell!<CR>
 nmap <F12> :call <SID>SynStack()<CR>
-
-nmap <leader>2 :set paste<CR>i
-
-" better use of arrow keys, number increment/decrement
-nnoremap <up> <C-a>
-nnoremap <down> <C-x>
 
 " Better page down and page up
 noremap <C-n> <C-d>

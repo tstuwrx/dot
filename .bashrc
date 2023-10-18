@@ -16,12 +16,17 @@ export LANG=en_US.UTF-8
 export USER="${USER:-$(whoami)}"
 export GITUSER="$USER"
 export TZ=America/Chicago
-export HELP_BROWSER=lynx
-export REPOS="$HOME/Repos"
-export GHREPOS="$REPOS/github.com/$GITUSER"
-export DOTFILES="$GHREPOS/dot"
-export SCRIPTS="$DOTFILES/scripts"
-export ZETDIR="$GHREPOS/zet"
+
+export SRC="$HOME/src"
+export REPOS="$SRC/repos"
+export GHREPOS="$REPOS/github.com"
+export USR="$HOME/usr"
+export BIN="$USR/bin"
+export LOCAL="$USR/local"
+export SHARE="$USR/share"
+export LIB="$USR/lib"
+export MANDIR="$SHARE/man"
+
 export TERM=xterm-256color
 export HRULEWIDTH=73
 export EDITOR=vi
@@ -29,8 +34,9 @@ export VISUAL=vi
 export EDITOR_PREFIX=vi
 export PYTHONDONTWRITEBYTECODE=2
 export LC_COLLATE=C
+export HELP_BROWSER=lynx
 
-export CDPATH=".:$GHREPOS:$DOTFILES:$REPOS:$HOME"
+export CDPATH=".:$GHREPOS:$REPOS:$HOME"
 
 export LESS="-FXR"
 export LESS_TERMCAP_mb="[35m" # magenta
@@ -119,6 +125,7 @@ PROMPT_COMMAND="__ps1"
 # aliases
 
 unalias -a
+alias vi='vim'
 alias ip='ip -c'
 alias ls='ls -h --color=auto'
 alias grep='grep --color=auto'
@@ -126,9 +133,8 @@ alias free='free -h'
 alias df='df -h'
 alias view='vi -R'
 alias diff='diff --color'
-alias clear='printf "\e[H\e[2J"'
-alias c='clear'
+alias clear='printf "\e[H\e[2J\e[3J"'
+alias c='printf "\e[H\e[2J\e[3J"'
 alias more="less"
 alias info='info --vi-keys'
-_have vim && alias vi=vim
 

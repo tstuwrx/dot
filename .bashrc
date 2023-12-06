@@ -163,5 +163,4 @@ alias view='vi -R'
 alias diff='diff --color'
 alias clear='printf "\e[H\e[2J\e[3J"'
 alias c='printf "\e[H\e[2J\e[3J"'
-alias lc='wc -l'
 

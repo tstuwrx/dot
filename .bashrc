@@ -32,11 +32,10 @@ export HRULEWIDTH=73
 export EDITOR=vi
 export VISUAL=vi
 export EDITOR_PREFIX=vi
-export PYTHONDONTWRITEBYTECODE=2
-export LC_COLLATE=C
 export HELP_BROWSER=lynx
 
-export CDPATH=".:$GHREPOS:$REPOS:$HOME"
+export PYTHONDONTWRITEBYTECODE=2
+export LC_COLLATE=C
 
 export LESS="-FXR"
 export LESS_TERMCAP_mb="[35m" # magenta
@@ -46,6 +45,35 @@ export LESS_TERMCAP_se=""
 export LESS_TERMCAP_so="[34m" # blue
 export LESS_TERMCAP_ue=""
 export LESS_TERMCAP_us="[4m"  # underline
+
+export GPG_TTY=$(tty)
+
+pathappend() {
+  declare arg
+  for arg in "$@"; do
+    test -d "$arg" || continue
+    PATH=${PATH//":$arg:"/:}
+    PATH=${PATH/#"$arg:"/}
+    PATH=${PATH/%":$arg:"/}
+    export PATH="${PATH:+"$PATH:"}$arg"
+  done
+} && export -f pathappend
+
+pathprepend() {
+  declare arg
+  for arg in "$@"; do
+    test -d "$arg" || continue
+    PATH=${PATH//":$arg:"/:}
+    PATH=${PATH/#"$arg:"/}
+    PATH=${PATH/%":$arg:"/}
+    export PATH="$arg${PATH:+":${PATH}"}"
+  done
+} && export -f pathprepend
+
+pathprepend \
+  "$BIN"
+
+export CDPATH=".:$GHREPOS:$REPOS:$HOME"
 
 # dictionary
 [[ -d /.vim/spell ]] && export VIMSPELL=("$HOME/.vim/spell/*.add")
@@ -135,6 +163,5 @@ alias view='vi -R'
 alias diff='diff --color'
 alias clear='printf "\e[H\e[2J\e[3J"'
 alias c='printf "\e[H\e[2J\e[3J"'
-alias more="less"
-alias info='info --vi-keys'
+alias lc='wc -l'
 

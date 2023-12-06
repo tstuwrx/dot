@@ -6,7 +6,7 @@ endif
 
 set nocompatible
 
-"####################### Vi Compatible (~/.exrc) #######################
+" Vi Compatible
 
 " automatically indent new lines
 set autoindent
@@ -18,7 +18,7 @@ set noflash
 set expandtab
 
 " number of spaces to replace a tab with when expandtab
-set tabstop=2
+set tabstop=8
 
 " ignore case when searching
 set ignorecase
@@ -35,7 +35,7 @@ set ruler " see ruf for formatting
 " show command and insert mode
 set showmode
 
-"#######################################################################
+" Vim only posthac die
 
 " search case sensitive only when search is mixed-case
 set smartcase
@@ -45,10 +45,10 @@ set t_vb=
 
 let mapleader=","
 
-set softtabstop=2
+set softtabstop=8
 
 " mostly used with >> and <<
-set shiftwidth=2
+set shiftwidth=8
 
 set smartindent
 
@@ -201,9 +201,10 @@ au FileType markdown,pandoc hi Title ctermfg=yellow ctermbg=NONE
 au FileType markdown,pandoc hi Operator ctermfg=yellow ctermbg=NONE
 au FileType markdown,pandoc set tw=0
 au FileType yaml hi yamlBlockMappingKey ctermfg=NONE
-au FileType yaml set sw=2
-au FileType bash set sw=2
+au FileType yaml set sw=8
+au FileType bash set sw=8
 au FileType c set sw=8
+au FileType python set sw=4
 au FileType markdown,pandoc noremap j gj
 au FileType markdown,pandoc noremap k gk
 
@@ -223,7 +224,6 @@ if filereadable(expand("~/.vim/autoload/plug.vim"))
 
 endif
 
-
 " better command-line completion
 set wildmenu
 
@@ -234,10 +234,6 @@ nnoremap <C-L> :nohl<CR><C-L>
 set omnifunc=syntaxcomplete#Complete
 
 " force some files to be specific file type
-au bufnewfile,bufRead *.md set ft=markdown
-au bufnewfile,bufRead *.bash* set ft=bash
-au bufnewfile,bufRead *.profile set filetype=sh
-au bufnewfile,bufRead *ssh/config set filetype=sshconfig
 au bufnewfile,bufRead *.txt set spell
 
 "fix bork bash detection
@@ -267,10 +263,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 " functions keys
 map <F1> :set number!<CR> :set relativenumber!<CR>
-set pastetoggle=<F3>
-map <F4> :set list!<CR>
-map <F5> :set cursorline!<CR>
-map <F7> :set spell!<CR>
+set pastetoggle=<F2>
+map <F3> :set list!<CR>
+map <F4> :set cursorline!<CR>
+map <F5> :set spell!<CR>
 nmap <F12> :call <SID>SynStack()<CR>
 
 " Better page down and page up

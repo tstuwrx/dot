@@ -17,26 +17,18 @@ export USER="${USER:-$(whoami)}"
 export GITUSER="$USER"
 export TZ=America/Chicago
 
+export BIN="$HOME/bin"
 export SRC="$HOME/src"
 export REPOS="$SRC/repos"
-export GHREPOS="$REPOS/github.com"
-export USR="$HOME/usr"
-export BIN="$USR/bin"
-export LOCAL="$USR/local"
-export SHARE="$USR/share"
-export LIB="$USR/lib"
-export MANDIR="$SHARE/man"
-
+export GHREPOS="$REPOS/github.com/$GITUSER"
 export TERM=xterm-256color
 export HRULEWIDTH=73
 export EDITOR=vi
 export VISUAL=vi
 export EDITOR_PREFIX=vi
 export HELP_BROWSER=lynx
-
 export PYTHONDONTWRITEBYTECODE=2
 export LC_COLLATE=C
-
 export LESS="-FXR"
 export LESS_TERMCAP_mb="[35m" # magenta
 export LESS_TERMCAP_md="[33m" # yellow
@@ -45,7 +37,6 @@ export LESS_TERMCAP_se=""
 export LESS_TERMCAP_so="[34m" # blue
 export LESS_TERMCAP_ue=""
 export LESS_TERMCAP_us="[4m"  # underline
-
 export GPG_TTY=$(tty)
 
 pathappend() {
@@ -71,7 +62,8 @@ pathprepend() {
 } && export -f pathprepend
 
 pathprepend \
-  "$BIN"
+  "$BIN" \
+  "$HOME/.local/bin"
 
 export CDPATH=".:$GHREPOS:$REPOS:$HOME"
 
@@ -86,7 +78,6 @@ if [[ -x /usr/bin/lesspipe ]]; then
 fi
 
 # dircolors
-
 if _have dircolors; then
 	if [[ -r "$HOME/.dircolors" ]]; then
 		eval "$(dircolors -b "$HOME/.dircolors")"
@@ -163,4 +154,3 @@ alias view='vi -R'
 alias diff='diff --color'
 alias clear='printf "\e[H\e[2J\e[3J"'
 alias c='printf "\e[H\e[2J\e[3J"'
-
